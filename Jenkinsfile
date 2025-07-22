@@ -20,11 +20,12 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    // Make sure Apache is installed and running on the VM
-                    sh 'sudo -i'
-                    sh 'rm -rf /var/www/html/*'
-                    sh 'cp -r * /var/www/html/'
-                    echo 'Deployment to Apache successful'
+                    // Assumes Apache is already installed and running
+                    sh '''
+                        sudo rm -rf /var/www/html/*
+                        sudo cp -r * /var/www/html/
+                        echo "Deployment to Apache successful"
+                    '''
                 }
             }
         }
